@@ -1,4 +1,6 @@
 fun main() {
+    // Alternative Solution:
+    // We may use calibrationValue(line, textualDigitsToDigits.values) from part2
     fun part1(input: List<String>): Int {
         fun calibrationValue(line: String): Int {
             val numbers = line.filter(Char::isDigit)
@@ -23,9 +25,9 @@ fun main() {
             "nine" to "9"
         )
 
-        fun calibrationValue(line: String): Int {
-            val (_, firstTextualNumber) = line.findAnyOf(textualDigitsToDigits.keys + textualDigitsToDigits.values)!!
-            val (_, secondTextualNumber) = line.findLastAnyOf(textualDigitsToDigits.keys + textualDigitsToDigits.values)!!
+        fun calibrationValue(line: String, numbers: Collection<String>): Int {
+            val (_, firstTextualNumber) = line.findAnyOf(numbers)!!
+            val (_, secondTextualNumber) = line.findLastAnyOf(numbers)!!
 
             val firstNumber = textualDigitsToDigits[firstTextualNumber] ?: firstTextualNumber
             val lastNumber = textualDigitsToDigits[secondTextualNumber] ?: secondTextualNumber
@@ -34,7 +36,8 @@ fun main() {
             return sum.toInt()
         }
 
-        return input.sumOf(::calibrationValue)
+        val numbers = textualDigitsToDigits.keys + textualDigitsToDigits.values
+        return input.sumOf { calibrationValue(it, numbers)}
     }
 
     // test if implementation meets criteria from the description, like:

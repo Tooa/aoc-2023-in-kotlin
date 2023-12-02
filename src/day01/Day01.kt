@@ -1,3 +1,8 @@
+package day01
+
+import println
+import readInput
+
 fun main() {
     // Alternative Solution:
     // We may use calibrationValue(line, textualDigitsToDigits.values) from part2
@@ -41,13 +46,13 @@ fun main() {
     }
 
     // test if implementation meets criteria from the description, like:
-    val testInput = readInput("Day01_test")
+    val testInput = readInput("day01","Day01_test")
     check(part1(testInput) == 142)
 
-    val testInputPart2 = readInput("Day01_test_part2")
+    val testInputPart2 = readInput("day01", "Day01_test_part2")
     check(part2(testInputPart2) == 281)
 
-    val input = readInput("Day01")
+    val input = readInput("day01", "Day01")
     part1(input).println()
     part2(input).println()
 }

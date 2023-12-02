@@ -45,13 +45,15 @@ fun main() {
 
     fun part2(games: List<Game>): Long {
         fun fewestCubes(game: Game): Subset {
-            val minimumCubes = mutableMapOf(Cube.RED to 0, Cube.GREEN to 0, Cube.BLUE to 0)
-            game.subsets().forEach { subset ->
-                subset.entries.forEach { (cube, count) ->
-                    if (checkNotNull(minimumCubes[cube]) < count) minimumCubes[cube] = count
-                }
-            }
-            return minimumCubes
+            // Optimization:
+            return Cube.entries.associateWith { cube -> game.subsets().maxOf { subset -> subset[cube] ?: 0 } }
+//            val minimumCubes = mutableMapOf(Cube.RED to 0, Cube.GREEN to 0, Cube.BLUE to 0)
+//            game.subsets().forEach { subset ->
+//                subset.entries.forEach { (cube, count) ->
+//                    if (checkNotNull(minimumCubes[cube]) < count) minimumCubes[cube] = count
+//                }
+//            }
+//            return minimumCubes
         }
 
        return games.sumOf { fewestCubes(it).fold(1L) { acc, (_, count) -> count * acc} }
@@ -64,12 +66,11 @@ fun main() {
 
     val input = readInput("day02","Day02")
     val resultPart1 = part1(input, mapOf(Cube.RED to 12, Cube.GREEN to 13, Cube.BLUE to 14))
-    resultPart1.println()
+    resultPart1.println() // Solution: 1734
 
     val testInputPart2 = readInput("day02","Day02_test")
-    println(part2(testInputPart2))
     check(part2(testInputPart2) == 2286L)
 
     val resultPart2 = part2(input)
-    resultPart2.println()
+    resultPart2.println() // Solution: 70387
 }

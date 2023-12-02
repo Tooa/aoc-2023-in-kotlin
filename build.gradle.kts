@@ -8,6 +8,10 @@ sourceSets {
     }
 }
 
+dependencies {
+    implementation("io.arrow-kt:arrow-core:1.2.1")
+}
+
 tasks {
     wrapper {
         gradleVersion = "8.5"

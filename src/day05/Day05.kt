@@ -34,7 +34,7 @@ fun main() {
         fun getDstValue(num: Long, mapEntries: List<MapEntry>): Long = mapEntries
                 .find { it.inRange(num) }
                 ?.let { (dst, src, _) -> num - src + dst }
-                // map identify when no range mapping exists for value
+                // map identity when no range mapping exists for value
                 ?: num
 
         return almanac.seeds().minOf { seed ->
@@ -48,7 +48,7 @@ fun main() {
         fun getDstValueReverse(num: Long, mapEntries: List<MapEntry>): Long = mapEntries
             .find { it.inRangeReverse(num) }
             ?.let { (dst, src, _) -> src + (num - dst) }
-            // map identify when no range mapping exists for value
+            // map identity when no range mapping exists for value
             ?: num
 
         val seedAsRanges = almanac.seeds()

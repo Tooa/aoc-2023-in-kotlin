@@ -1,12 +1,11 @@
 package day04
 
+import findNumbers
 import println
 import readInput
 import kotlin.math.pow
 
 typealias ScratchCard = String
-
-private fun String.findNumbers() = "\\d+".toRegex().findAll(this)
 
 val ScratchCard.cardNumber: Int
     get() = """Card\s+(?<id>\d+):.+""".toRegex().matchEntire(this)!!.groups["id"]!!.value.toInt()

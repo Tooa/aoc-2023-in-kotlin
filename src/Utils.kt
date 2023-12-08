@@ -23,3 +23,9 @@ fun String.md5() = BigInteger(1, MessageDigest.getInstance("MD5").digest(toByteA
 fun Any?.println() = println(this)
 
 fun String.findNumbers(): Sequence<MatchResult> = "\\d+".toRegex().findAll(this)
+
+fun List<Long>.lcm() = reduce { a, b -> lcm(a, b) }
+
+fun lcm(a: Long, b: Long): Long = (a * b) / gcd(a, b)
+
+fun gcd(a: Long, b: Long): Long = if (a == 0L) b else gcd(b % a, a)

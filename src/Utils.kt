@@ -24,6 +24,8 @@ fun Any?.println() = println(this)
 
 fun String.findNumbers(): Sequence<MatchResult> = "\\d+".toRegex().findAll(this)
 
+fun Int.isEven() = this % 2 == 0
+
 fun List<Long>.lcm() = reduce { a, b -> lcm(a, b) }
 
 fun lcm(a: Long, b: Long): Long = (a * b) / gcd(a, b)

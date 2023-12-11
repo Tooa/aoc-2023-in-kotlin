@@ -1,8 +1,10 @@
+import kotlin.math.abs
 
 
 typealias Polygon = List<Coordinate>
 
 data class Coordinate(val x: Int, val y: Int)
+data class CoordinateL(val x: Long, val y: Long)
 
 // Includes diagonal neighbors
 fun Coordinate.neighbors(): Set<Coordinate> = setOf(
@@ -31,6 +33,8 @@ fun Coordinate.move(
         Direction.LEFT, Direction.RIGHT -> 0
     }
 )
+
+infix fun CoordinateL.manhattanDistanceTo(other: CoordinateL) = abs(x - other.x) + abs(y - other.y)
 
 // Ray Casting Algorithm - determine whether a point is inside a complex polygon
 // https://en.wikipedia.org/wiki/Point_in_polygon#Ray_casting_algorithm
